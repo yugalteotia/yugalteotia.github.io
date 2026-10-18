@@ -144,9 +144,9 @@ section{scroll-margin-top:64px}
 .grad{background:linear-gradient(90deg,#5eead4,#38bdf8,#a78bfa,#f472b6,#5eead4);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:gradShift 9s linear infinite}
 @keyframes gradShift{to{background-position:300% 0}}
 .btn-primary{background:linear-gradient(135deg,#5eead4,#38bdf8,#a78bfa);background-size:220% 220%;animation:gradShift 7s ease infinite}
-.skill-card,.proj,.edu{overflow:hidden}
+.skill-card,.proj,.edu{position:relative;overflow:hidden}
 .skill-card::before,.proj::before,.edu::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#5eead4,#38bdf8,#a78bfa,#f472b6);opacity:.85}
-.job{overflow:hidden}
+.job{position:relative;overflow:hidden}
 .job::after{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#5eead4,#38bdf8,#a78bfa,#f472b6);opacity:.85}
 .timeline::before{background:linear-gradient(180deg,#5eead4,#38bdf8,#a78bfa,#f472b6)}
 .job::before{animation:pulse 2.6s ease-in-out infinite}
@@ -157,6 +157,26 @@ section{scroll-margin-top:64px}
 .skill-grid .skill-card:nth-child(4) .dot{background:linear-gradient(135deg,#f472b6,#ec4899)}
 .skill-grid .skill-card:nth-child(5) .dot{background:linear-gradient(135deg,#fbbf24,#f59e0b)}
 .skill-grid .skill-card:nth-child(6) .dot{background:linear-gradient(135deg,#a3e635,#22d3ee)}
+.skill-grid .skill-card:nth-child(7) .dot{background:linear-gradient(135deg,#5eead4,#a78bfa)}
+.skill-grid .skill-card:nth-child(8) .dot{background:linear-gradient(135deg,#f472b6,#fbbf24)}
+/* ---------- contact profiles ---------- */
+.profiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:30px}
+.profile{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:15px 18px;text-decoration:none;transition:transform .16s,border-color .16s,box-shadow .16s;position:relative;overflow:hidden}
+.profile::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#5eead4,#38bdf8,#a78bfa,#f472b6);opacity:0;transition:opacity .2s}
+.profile:hover{transform:translateY(-3px);border-color:rgba(167,139,250,.5);box-shadow:0 12px 28px rgba(0,0,0,.35)}
+.profile:hover::before{opacity:.9}
+.p-ico{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;font-family:'JetBrains Mono',monospace;color:#0b1020;flex-shrink:0}
+.pi-1{background:linear-gradient(135deg,#5eead4,#38bdf8)}
+.pi-2{background:linear-gradient(135deg,#a78bfa,#7c3aed)}
+.pi-3{background:linear-gradient(135deg,#e8edf7,#9aa7c4)}
+.pi-4{background:linear-gradient(135deg,#f472b6,#ec4899)}
+.pi-5{background:linear-gradient(135deg,#38bdf8,#6366f1)}
+.pi-6{background:linear-gradient(135deg,#a3e635,#22d3ee)}
+.profile b{font-size:.95rem;display:block}
+.profile small{color:var(--faint);font-size:.76rem;font-family:'JetBrains Mono',monospace}
+.contact-cta{display:flex;gap:14px;flex-wrap:wrap}
+.edu a.school{color:var(--accent2);font-weight:600;font-size:.95rem;text-decoration:none;border-bottom:1px dotted rgba(56,189,248,.5)}
+.edu a.school:hover{border-bottom-style:solid}
 .pill.hot{background:rgba(167,139,250,.12);border-color:rgba(167,139,250,.4);color:#c4b5fd}
 .ticker{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(255,255,255,.02)}
 .ticker-track{display:flex;width:max-content;animation:tick 30s linear infinite;padding:13px 0}
@@ -230,10 +250,9 @@ section{scroll-margin-top:64px}
   <p class="sec-sub reveal">A short version of the story behind the resume.</p>
   <div class="about-grid">
     <div class="reveal">
-      <p>I'm a <strong>full-stack software engineer with a backend focus</strong>, building enterprise applications with Java, Spring Boot, REST APIs, gRPC and MongoDB — plus the JavaScript/TypeScript frontends that sit on top. I take features <strong>end to end: design, build, ship</strong>.</p>
-      <p>At <strong>IDeaS (a SAS company)</strong>, I contributed to cross-product APIs, distributed service integration, database optimization, a large Spring Boot migration, production debugging, and engineering automation — including connecting frontend experiences with backend functionality.</p>
-      <p>I use <strong>AI-assisted development tools</strong> like GitHub Copilot to accelerate implementation, root-cause analysis, debugging and scenario generation — while owning the technical approach, reviewing generated code, and validating solutions before calling the work done.</p>
-      <p>I enjoy breaking down complex problems and building <strong>maintainable, extensible, reliable software</strong> across the application stack.</p>
+      <p>I'm a <strong>full-stack engineer with a backend focus</strong>. At <strong>IDeaS</strong>, I built cross-product APIs, distributed service integrations, and Spring Boot microservices — plus the Ember.js/TypeScript frontends that consume them.</p>
+      <p>I take features <strong>end to end: design, build, ship</strong>. AI tools like GitHub Copilot speed up my implementation, debugging, and root-cause analysis — but I own the technical approach and validate everything before calling it done.</p>
+      <p>I enjoy breaking complex problems down into <strong>maintainable, reliable software</strong>.</p>
     </div>
     <div class="stat-card reveal">
       <div class="stat-row"><span class="stat-num" data-count="20">20</span><span class="stat-lab">Java modules migrated Spring Boot 2.6 → 3.5</span></div>
@@ -247,14 +266,16 @@ section{scroll-margin-top:64px}
 <section id="skills">
   <p class="sec-label reveal">Skills</p>
   <h2 class="reveal">What I work with</h2>
-  <p class="sec-sub reveal">The tools I reach for day to day.</p>
+  <p class="sec-sub reveal">What I build with — and what I'm learning next. Highlighted ones are the most in-demand right now.</p>
   <div class="skill-grid">
-    <div class="skill-card reveal"><h3><span class="dot"></span>Languages</h3><div class="pills"><span class="pill hot">Java</span><span class="pill hot">JavaScript</span><span class="pill hot">TypeScript</span><span class="pill">Kotlin</span></div></div>
-    <div class="skill-card reveal"><h3><span class="dot"></span>Backend</h3><div class="pills"><span class="pill hot">Spring Boot</span><span class="pill hot">REST APIs</span><span class="pill hot">gRPC</span><span class="pill">Protocol Buffers</span><span class="pill">Microservices</span><span class="pill">Spring Security</span></div></div>
-    <div class="skill-card reveal"><h3><span class="dot"></span>Data</h3><div class="pills"><span class="pill hot">MongoDB</span><span class="pill hot">MySQL</span><span class="pill">Spring Data JPA</span><span class="pill">Hibernate</span><span class="pill">Flyway</span><span class="pill">Mongock / Mongobee</span></div></div>
-    <div class="skill-card reveal"><h3><span class="dot"></span>Frontend &amp; Mobile</h3><div class="pills"><span class="pill">Ember.js</span><span class="pill">React.js</span><span class="pill">Jetpack Compose</span><span class="pill">HTML / CSS</span></div></div>
-    <div class="skill-card reveal"><h3><span class="dot"></span>Engineering tools</h3><div class="pills"><span class="pill">Git</span><span class="pill">Gradle</span><span class="pill">Maven</span><span class="pill">GitHub Actions</span><span class="pill">Docker</span><span class="pill">Linux</span><span class="pill">JUnit</span><span class="pill">Mockito</span></div></div>
-    <div class="skill-card reveal"><h3><span class="dot"></span>AI-assisted development</h3><div class="pills"><span class="pill hot">GitHub Copilot</span><span class="pill">Prompt engineering</span><span class="pill">Agent workflows</span><span class="pill">RCA &amp; debugging</span><span class="pill">Scenario generation</span></div></div>
+    <div class="skill-card reveal"><h3><span class="dot"></span>Languages</h3><div class="pills"><span class="pill hot">Java</span><span class="pill hot">TypeScript</span><span class="pill">JavaScript</span><span class="pill">Kotlin</span></div></div>
+    <div class="skill-card reveal"><h3><span class="dot"></span>Backend</h3><div class="pills"><span class="pill hot">Spring Boot</span><span class="pill hot">Microservices</span><span class="pill hot">REST APIs</span><span class="pill hot">gRPC</span><span class="pill">Spring Security</span><span class="pill">Protocol Buffers</span></div></div>
+    <div class="skill-card reveal"><h3><span class="dot"></span>Data</h3><div class="pills"><span class="pill hot">MongoDB</span><span class="pill">MySQL</span><span class="pill">Spring Data JPA</span><span class="pill">Hibernate</span><span class="pill">Flyway</span><span class="pill">Mongock</span></div></div>
+    <div class="skill-card reveal"><h3><span class="dot"></span>Frontend</h3><div class="pills"><span class="pill hot">React.js</span><span class="pill">Ember.js</span><span class="pill">TypeScript</span><span class="pill">Jetpack Compose</span><span class="pill">HTML / CSS</span></div></div>
+    <div class="skill-card reveal"><h3><span class="dot"></span>Testing</h3><div class="pills"><span class="pill hot">JUnit</span><span class="pill">Mockito</span><span class="pill">Unit testing</span><span class="pill">Integration testing</span><span class="pill">Contract testing</span></div></div>
+    <div class="skill-card reveal"><h3><span class="dot"></span>DevOps &amp; Tools</h3><div class="pills"><span class="pill hot">Docker</span><span class="pill hot">Kubernetes</span><span class="pill hot">GitHub Actions</span><span class="pill">Git</span><span class="pill">Gradle</span><span class="pill">Maven</span><span class="pill">Linux</span></div></div>
+    <div class="skill-card reveal"><h3><span class="dot"></span>AI-assisted development</h3><div class="pills"><span class="pill hot">GitHub Copilot</span><span class="pill">Prompt engineering</span><span class="pill">Agent workflows</span><span class="pill">RCA &amp; debugging</span></div></div>
+    <div class="skill-card reveal"><h3><span class="dot"></span>Leveling up</h3><div class="pills"><span class="pill">AWS</span><span class="pill">Kafka</span><span class="pill">Redis</span><span class="pill">System design</span></div></div>
   </div>
 </section>
 
@@ -269,11 +290,11 @@ section{scroll-margin-top:64px}
         <span class="dates">Oct 2024 – Sep 2026</span>
       </div>
       <ul>
-        <li>Enabled <strong>cross-product data exchange</strong> through REST and gRPC APIs with pagination, filtering and audit info; kept Protocol Buffer contracts backward-compatible and validated via contract-style tests.</li>
-        <li>Built <strong>concurrency controls for long-running jobs</strong> — centralized mutation guards plus status APIs to prevent conflicting changes, with frontend progress tracking and conflict handling.</li>
+        <li>Enabled <strong>cross-product data exchange</strong> via REST and gRPC APIs — pagination, filtering, audit trails — with backward-compatible Protocol Buffer contracts covered by contract tests.</li>
+        <li>Built <strong>concurrency controls for long-running jobs</strong>: centralized mutation guards and status APIs that prevent conflicting changes, with frontend progress tracking.</li>
         <li><strong>Optimized MongoDB access</strong> with targeted indexes, bulk reads and batched audit retrieval; wrote migration logic to transform and upsert legacy records.</li>
         <li>Upgraded a microservice app across <strong>20 Java modules from Spring Boot 2.6 to 3.5</strong> — redesigned security config for Spring Security 6, migrated Jakarta APIs, upgraded five generated API-client modules.</li>
-        <li>Delivered Ember.js/TypeScript configuration and reporting features with reusable multiselect components, validation and conditional rendering; simplified shared logic and removed redundant service calls.</li>
+        <li>Shipped Ember.js/TypeScript config and reporting features — reusable multiselect components, validation, conditional rendering — while simplifying shared logic and cutting redundant service calls.</li>
         <li>Cut <strong>~60% of manual operational effort</strong> through API orchestration guided by live DB load; built a browser extension making dev/staging/prod environments visually distinct.</li>
       </ul>
     </article>
@@ -354,29 +375,32 @@ section{scroll-margin-top:64px}
   <div class="edu-grid">
     <div class="edu reveal">
       <h3>PG Diploma in Advanced Computing (PG-DAC)</h3>
-      <div class="school">Centre for Development of Advanced Computing (C-DAC), Pune</div>
+      <a class="school" href="https://www.cdac.in/" target="_blank" rel="noopener">Centre for Development of Advanced Computing (C-DAC), Pune ↗</a>
       <div class="dates">Mar 2024 – Aug 2024</div>
     </div>
     <div class="edu reveal">
       <h3>B.Tech, Computer Science &amp; Engineering</h3>
-      <div class="school">Dr. A.P.J. Abdul Kalam Technical University</div>
+      <a class="school" href="https://aktu.ac.in/" target="_blank" rel="noopener">Dr. A.P.J. Abdul Kalam Technical University ↗</a>
       <div class="dates">2020 – 2023</div>
     </div>
   </div>
 </section>
 
 <section id="contact">
-  <div class="contact-box reveal">
-    <p class="sec-label">Contact</p>
-    <h2>Let's build something</h2>
-    <p>I'm open to full-stack and backend software engineering roles — Java, Spring Boot, microservices, APIs. My inbox is always open.</p>
-    <div class="contact-links">
-      <a class="btn btn-primary" href="mailto:teotia.yugal@gmail.com">Email me</a>
-      <a class="btn btn-ghost" href="tel:+919560369538">+91 95603 69538</a>
-      <a class="btn btn-ghost" href="https://www.linkedin.com/in/yugalteotia/" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="btn btn-ghost" href="https://github.com/yugalteotia" target="_blank" rel="noopener">GitHub</a>
-      <a class="btn btn-ghost" href="https://x.com/yugalTeotia_" target="_blank" rel="noopener">X</a>
-    </div>
+  <p class="sec-label reveal">Contact</p>
+  <h2 class="reveal">Let's build something <span class="grad">together</span></h2>
+  <p class="sec-sub reveal">Open to full-stack and backend engineering roles. Find me on any of these — or just say hi.</p>
+  <div class="profiles reveal">
+    <a class="profile" href="https://www.linkedin.com/in/yugalteotia/" target="_blank" rel="noopener"><span class="p-ico pi-1">in</span><span><b>LinkedIn</b><small>linkedin.com/in/yugalteotia</small></span></a>
+    <a class="profile" href="https://github.com/yugalteotia" target="_blank" rel="noopener"><span class="p-ico pi-2">gh</span><span><b>GitHub</b><small>github.com/yugalteotia</small></span></a>
+    <a class="profile" href="https://x.com/yugalTeotia_" target="_blank" rel="noopener"><span class="p-ico pi-3">X</span><span><b>X</b><small>x.com/yugalTeotia_</small></span></a>
+    <a class="profile" href="https://codepen.io/yugalteotia/pens/" target="_blank" rel="noopener"><span class="p-ico pi-4">&lt;/&gt;</span><span><b>CodePen</b><small>codepen.io/yugalteotia</small></span></a>
+    <a class="profile" href="https://hub.docker.com/u/4yugal" target="_blank" rel="noopener"><span class="p-ico pi-5">◈</span><span><b>Docker Hub</b><small>hub.docker.com/u/4yugal</small></span></a>
+    <a class="profile" href="https://referral.hackthebox.com/mz8U37S" target="_blank" rel="noopener"><span class="p-ico pi-6">▣</span><span><b>HackTheBox</b><small>hackthebox.com</small></span></a>
+  </div>
+  <div class="contact-cta reveal">
+    <a class="btn btn-primary" href="mailto:teotia.yugal@gmail.com">teotia.yugal@gmail.com</a>
+    <a class="btn btn-ghost" href="tel:+919560369538">+91 95603 69538</a>
   </div>
 </section>
 
