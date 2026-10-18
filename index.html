@@ -132,6 +132,45 @@ h2{font-size:1.9rem;font-weight:800;margin-bottom:8px;letter-spacing:-.5px}
 .contact-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 footer{text-align:center;color:var(--faint);font-size:.82rem;padding:36px 0 44px;font-family:'JetBrains Mono',monospace}
 
+/* ---------- funky layer: color + motion ---------- */
+section{scroll-margin-top:64px}
+.bg-blobs{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.blob{position:absolute;border-radius:50%;filter:blur(100px);opacity:.32;animation:drift 24s ease-in-out infinite alternate}
+.blob.b1{width:540px;height:540px;background:#6d28d9;top:-160px;left:-140px}
+.blob.b2{width:480px;height:480px;background:#0284c7;bottom:-140px;right:-120px;animation-delay:-9s}
+.blob.b3{width:400px;height:400px;background:#db2777;top:36%;left:58%;animation-delay:-15s;opacity:.20}
+.blob.b4{width:320px;height:320px;background:#d97706;top:64%;left:6%;animation-delay:-5s;opacity:.15}
+@keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(70px,50px) scale(1.18)}}
+.grad{background:linear-gradient(90deg,#5eead4,#38bdf8,#a78bfa,#f472b6,#5eead4);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:gradShift 9s linear infinite}
+@keyframes gradShift{to{background-position:300% 0}}
+.btn-primary{background:linear-gradient(135deg,#5eead4,#38bdf8,#a78bfa);background-size:220% 220%;animation:gradShift 7s ease infinite}
+.skill-card,.proj,.edu{overflow:hidden}
+.skill-card::before,.proj::before,.edu::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#5eead4,#38bdf8,#a78bfa,#f472b6);opacity:.85}
+.job{overflow:hidden}
+.job::after{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#5eead4,#38bdf8,#a78bfa,#f472b6);opacity:.85}
+.timeline::before{background:linear-gradient(180deg,#5eead4,#38bdf8,#a78bfa,#f472b6)}
+.job::before{animation:pulse 2.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(94,234,212,.45)}50%{box-shadow:0 0 0 9px rgba(94,234,212,0)}}
+.skill-grid .skill-card:nth-child(1) .dot{background:linear-gradient(135deg,#5eead4,#38bdf8)}
+.skill-grid .skill-card:nth-child(2) .dot{background:linear-gradient(135deg,#a78bfa,#7c3aed)}
+.skill-grid .skill-card:nth-child(3) .dot{background:linear-gradient(135deg,#38bdf8,#6366f1)}
+.skill-grid .skill-card:nth-child(4) .dot{background:linear-gradient(135deg,#f472b6,#ec4899)}
+.skill-grid .skill-card:nth-child(5) .dot{background:linear-gradient(135deg,#fbbf24,#f59e0b)}
+.skill-grid .skill-card:nth-child(6) .dot{background:linear-gradient(135deg,#a3e635,#22d3ee)}
+.pill.hot{background:rgba(167,139,250,.12);border-color:rgba(167,139,250,.4);color:#c4b5fd}
+.ticker{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(255,255,255,.02)}
+.ticker-track{display:flex;width:max-content;animation:tick 30s linear infinite;padding:13px 0}
+.ticker:hover .ticker-track{animation-play-state:paused}
+.ticker-track span{font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--muted);padding:0 24px;white-space:nowrap}
+.ticker-track span i{font-style:normal;margin-right:10px;background:linear-gradient(135deg,#5eead4,#a78bfa);-webkit-background-clip:text;background-clip:text;color:transparent}
+@keyframes tick{to{transform:translateX(-50%)}}
+.contact-box{border-color:transparent}
+.contact-box::before{content:"";position:absolute;inset:0;border-radius:var(--radius);padding:2px;background:linear-gradient(135deg,#5eead4,#38bdf8,#a78bfa,#f472b6,#5eead4);background-size:300% 300%;animation:gradShift 8s ease infinite;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.job a.company{color:var(--accent2);font-weight:600;text-decoration:none;border-bottom:1px dotted rgba(56,189,248,.5)}
+.job a.company:hover{border-bottom-style:solid}
+.stat-num{display:inline-block}
+@media print{.bg-blobs,.ticker{display:none}}
+
 /* ---------- reveal ---------- */
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease}
 .reveal.in{opacity:1;transform:none}
@@ -144,6 +183,8 @@ footer{text-align:center;color:var(--faint);font-size:.82rem;padding:36px 0 44px
 </style>
 </head>
 <body>
+
+<div class="bg-blobs" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div></div>
 
 <nav>
   <div class="nav-inner">
@@ -163,8 +204,8 @@ footer{text-align:center;color:var(--faint);font-size:.82rem;padding:36px 0 44px
 <header class="hero" id="home">
   <div class="wrap hero-inner">
     <p class="kicker">Hello, I'm</p>
-    <h1>Yugal Teotia<br><span class="thin">Full-Stack Software Engineer</span></h1>
-    <p class="tag">I'm a <strong>full-stack engineer with a backend focus</strong> — I design, build and <strong>ship end-to-end features</strong>: from Java / Spring Boot APIs, gRPC services and MongoDB, to the interfaces that consume them.</p>
+    <h1><span class="grad">Yugal Teotia</span><br><span class="thin">Full-Stack Software Engineer</span></h1>
+    <p class="tag">I'm a <strong>full-stack engineer with a backend focus</strong>. I design, build, and ship <strong>end-to-end features</strong> — from Java/Spring Boot APIs, gRPC services, and MongoDB to the interfaces that consume them.</p>
     <div class="cta-row">
       <a class="btn btn-primary" href="#projects">View my work</a>
       <a class="btn btn-ghost" href="#contact">Get in touch</a>
@@ -174,9 +215,12 @@ footer{text-align:center;color:var(--faint);font-size:.82rem;padding:36px 0 44px
       <a href="mailto:teotia.yugal@gmail.com">teotia.yugal@gmail.com</a>
       <a href="https://www.linkedin.com/in/yugalteotia/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://github.com/yugalteotia" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://x.com/yugalTeotia_" target="_blank" rel="noopener">X</a>
     </div>
   </div>
 </header>
+
+<div class="ticker" aria-hidden="true"><div class="ticker-track"><span><i>◆</i>Java</span><span><i>◆</i>Spring Boot</span><span><i>◆</i>gRPC</span><span><i>◆</i>MongoDB</span><span><i>◆</i>Microservices</span><span><i>◆</i>REST APIs</span><span><i>◆</i>MySQL</span><span><i>◆</i>Docker</span><span><i>◆</i>Kubernetes</span><span><i>◆</i>TypeScript</span><span><i>◆</i>Ember.js</span><span><i>◆</i>React</span><span><i>◆</i>Kotlin</span><span><i>◆</i>GitHub Actions</span><span><i>◆</i>Linux</span><span><i>◆</i>Java</span><span><i>◆</i>Spring Boot</span><span><i>◆</i>gRPC</span><span><i>◆</i>MongoDB</span><span><i>◆</i>Microservices</span><span><i>◆</i>REST APIs</span><span><i>◆</i>MySQL</span><span><i>◆</i>Docker</span><span><i>◆</i>Kubernetes</span><span><i>◆</i>TypeScript</span><span><i>◆</i>Ember.js</span><span><i>◆</i>React</span><span><i>◆</i>Kotlin</span><span><i>◆</i>GitHub Actions</span><span><i>◆</i>Linux</span></div></div>
 
 <main class="wrap">
 
@@ -192,10 +236,10 @@ footer{text-align:center;color:var(--faint);font-size:.82rem;padding:36px 0 44px
       <p>I enjoy breaking down complex problems and building <strong>maintainable, extensible, reliable software</strong> across the application stack.</p>
     </div>
     <div class="stat-card reveal">
-      <div class="stat-row"><span class="stat-num">20</span><span class="stat-lab">Java modules migrated Spring Boot 2.6 → 3.5</span></div>
-      <div class="stat-row"><span class="stat-num">~60%</span><span class="stat-lab">manual operational effort reduced via API orchestration</span></div>
-      <div class="stat-row"><span class="stat-num">~30%</span><span class="stat-lab">faster API-backed data retrieval in ERP modules</span></div>
-      <div class="stat-row"><span class="stat-num">2+</span><span class="stat-lab">years building enterprise SaaS at scale</span></div>
+      <div class="stat-row"><span class="stat-num" data-count="20">20</span><span class="stat-lab">Java modules migrated Spring Boot 2.6 → 3.5</span></div>
+      <div class="stat-row"><span class="stat-num" data-count="60" data-prefix="~" data-suffix="%">~60%</span><span class="stat-lab">manual operational effort reduced via API orchestration</span></div>
+      <div class="stat-row"><span class="stat-num" data-count="30" data-prefix="~" data-suffix="%">~30%</span><span class="stat-lab">faster API-backed data retrieval in ERP modules</span></div>
+      <div class="stat-row"><span class="stat-num" data-count="2" data-suffix="+">2+</span><span class="stat-lab">years building enterprise SaaS at scale</span></div>
     </div>
   </div>
 </section>
@@ -221,7 +265,7 @@ footer{text-align:center;color:var(--faint);font-size:.82rem;padding:36px 0 44px
   <div class="timeline">
     <article class="job reveal">
       <div class="job-head">
-        <div><h3>Software Engineer</h3><div class="company">IDeaS — A SAS Company</div><div class="loc">Pune, India</div></div>
+        <div><h3>Software Engineer</h3><a class="company" href="https://www.ideas.com" target="_blank" rel="noopener">IDeaS — A SAS Company ↗</a><div class="loc">Pune, India</div></div>
         <span class="dates">Oct 2024 – Sep 2026</span>
       </div>
       <ul>
@@ -235,7 +279,7 @@ footer{text-align:center;color:var(--faint);font-size:.82rem;padding:36px 0 44px
     </article>
     <article class="job reveal">
       <div class="job-head">
-        <div><h3>Application Developer</h3><div class="company">Data Nova India Pvt. Ltd.</div><div class="loc">Noida, India</div></div>
+        <div><h3>Application Developer</h3><a class="company" href="https://www.datanova.in/" target="_blank" rel="noopener">Data Nova India Pvt. Ltd. ↗</a><div class="loc">Noida, India</div></div>
         <span class="dates">Feb 2023 – May 2023</span>
       </div>
       <ul>
@@ -331,6 +375,7 @@ footer{text-align:center;color:var(--faint);font-size:.82rem;padding:36px 0 44px
       <a class="btn btn-ghost" href="tel:+919560369538">+91 95603 69538</a>
       <a class="btn btn-ghost" href="https://www.linkedin.com/in/yugalteotia/" target="_blank" rel="noopener">LinkedIn</a>
       <a class="btn btn-ghost" href="https://github.com/yugalteotia" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn-ghost" href="https://x.com/yugalTeotia_" target="_blank" rel="noopener">X</a>
     </div>
   </div>
 </section>
@@ -353,6 +398,15 @@ addEventListener('scroll',()=>{
   links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
 },{passive:true});
 document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>document.querySelector('.nav-links').classList.remove('open')));
+// animated stat counters
+const cio=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;cio.unobserve(e.target);
+  const el=e.target,end=+el.dataset.count,pre=el.dataset.prefix||'',suf=el.dataset.suffix||'';
+  const t0=performance.now(),dur=1300;
+  (function step(t){const p=Math.min(1,(t-t0)/dur),v=Math.round(end*(1-Math.pow(1-p,3)));
+    el.textContent=pre+v+suf;if(p<1)requestAnimationFrame(step)})(t0);
+}),{threshold:.5});
+document.querySelectorAll('.stat-num[data-count]').forEach(el=>cio.observe(el));
 </script>
 </body>
 </html>
