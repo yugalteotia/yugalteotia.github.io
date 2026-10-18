@@ -71,11 +71,10 @@ h2{font-size:1.9rem;font-weight:800;margin-bottom:8px;letter-spacing:-.5px}
 @media(max-width:760px){.about-grid{grid-template-columns:1fr}}
 .about-grid p{color:var(--muted);margin-bottom:14px}
 .about-grid p strong{color:var(--text)}
-.stat-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
-.stat-row{display:grid;grid-template-columns:104px 1fr;gap:18px;align-items:center;padding:13px 0;border-bottom:1px dashed var(--line)}
-.stat-row:last-child{border-bottom:none}
-.stat-num{font-size:1.55rem;font-weight:800;color:var(--accent);font-family:'JetBrains Mono',monospace;line-height:1.1;white-space:nowrap}
-.stat-lab{color:var(--muted);font-size:.9rem;line-height:1.5}
+.stat-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:22px;align-content:space-between}
+.stat-row{padding:0}
+.stat-num{font-size:1.5rem;font-weight:800;color:var(--accent);font-family:'JetBrains Mono',monospace;line-height:1.15;display:block;margin-bottom:6px;white-space:nowrap}
+.stat-lab{color:var(--muted);font-size:.85rem;line-height:1.45;display:block}
 
 /* ---------- skills ---------- */
 .skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
