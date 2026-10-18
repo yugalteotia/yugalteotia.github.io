@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yugal Teotia — Backend Software Engineer</title>
+<meta name="description" content="Portfolio of Yugal Teotia, backend software engineer building enterprise SaaS features and cross-product APIs with Java, Spring Boot, gRPC and MongoDB.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b1020; --bg2:#0e152b; --card:#131c36; --card2:#16203d;
+  --line:#223052; --text:#e8edf7; --muted:#9aa7c4; --faint:#6b7a9b;
+  --accent:#5eead4; --accent2:#38bdf8; --warn:#fbbf24;
+  --radius:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple-system,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+::selection{background:rgba(94,234,212,.25)}
+
+/* ---------- nav ---------- */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(12px);background:rgba(11,16,32,.78);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:1080px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1rem;letter-spacing:.5px}
+.brand span{color:var(--accent)}
+.nav-links{display:flex;gap:26px;list-style:none}
+.nav-links a{text-decoration:none;color:var(--muted);font-size:.9rem;font-weight:500;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--accent)}
+.burger{display:none;background:none;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:6px 10px;cursor:pointer;font-size:1.1rem}
+@media(max-width:760px){
+  .burger{display:block}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg2);flex-direction:column;gap:0;border-bottom:1px solid var(--line)}
+  .nav-links.open{display:flex}
+  .nav-links li{padding:12px 24px;border-top:1px solid var(--line)}
+}
+
+/* ---------- layout ---------- */
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+section{padding:88px 0 40px}
+.sec-label{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:.8rem;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:10px}
+h2{font-size:1.9rem;font-weight:800;margin-bottom:8px;letter-spacing:-.5px}
+.sec-sub{color:var(--muted);max-width:640px;margin-bottom:36px}
+
+/* ---------- hero ---------- */
+.hero{min-height:92vh;display:flex;align-items:center;padding-top:120px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(600px 320px at 12% 18%,rgba(56,189,248,.10),transparent 60%),
+  radial-gradient(700px 380px at 88% 78%,rgba(94,234,212,.08),transparent 60%);pointer-events:none}
+.hero-inner{position:relative}
+.hero .kicker{font-family:'JetBrains Mono',monospace;color:var(--accent);margin-bottom:14px;font-size:.95rem}
+.hero h1{font-size:clamp(2.6rem,6vw,4.4rem);font-weight:800;letter-spacing:-1.5px;line-height:1.08;margin-bottom:14px}
+.hero h1 .thin{color:var(--muted);font-weight:600}
+.hero .tag{font-size:1.15rem;color:var(--muted);max-width:620px;margin-bottom:28px}
+.hero .tag strong{color:var(--text)}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:34px}
+.btn{display:inline-block;padding:13px 28px;border-radius:10px;font-weight:600;font-size:.95rem;text-decoration:none;transition:transform .15s,box-shadow .15s;cursor:pointer;border:1px solid transparent}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#06281f;box-shadow:0 8px 24px rgba(94,234,212,.22)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(94,234,212,.32)}
+.btn-ghost{border-color:var(--line);color:var(--text);background:rgba(255,255,255,.02)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.hero-meta{display:flex;gap:22px;flex-wrap:wrap;color:var(--faint);font-size:.9rem;font-family:'JetBrains Mono',monospace}
+.hero-meta a{text-decoration:none;border-bottom:1px dotted var(--faint)}
+.hero-meta a:hover{color:var(--accent);border-color:var(--accent)}
+
+/* ---------- about ---------- */
+.about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:28px}
+@media(max-width:760px){.about-grid{grid-template-columns:1fr}}
+.about-grid p{color:var(--muted);margin-bottom:14px}
+.about-grid p strong{color:var(--text)}
+.stat-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+.stat-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px dashed var(--line)}
+.stat-row:last-child{border-bottom:none}
+.stat-num{font-size:1.5rem;font-weight:800;color:var(--accent);font-family:'JetBrains Mono',monospace}
+.stat-lab{color:var(--muted);font-size:.9rem;text-align:right;max-width:60%}
+
+/* ---------- skills ---------- */
+.skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.skill-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;transition:transform .15s,border-color .15s}
+.skill-card:hover{transform:translateY(-3px);border-color:var(--accent)}
+.skill-card h3{font-size:1rem;margin-bottom:14px;color:var(--text);display:flex;align-items:center;gap:10px}
+.skill-card h3 .dot{width:9px;height:9px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));flex-shrink:0}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{font-size:.82rem;padding:5px 12px;border-radius:999px;background:rgba(56,189,248,.08);border:1px solid var(--line);color:var(--muted);font-family:'JetBrains Mono',monospace}
+.pill.hot{background:rgba(94,234,212,.12);border-color:rgba(94,234,212,.35);color:var(--accent)}
+
+/* ---------- experience ---------- */
+.timeline{position:relative;padding-left:28px}
+.timeline::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.job{position:relative;margin-bottom:34px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+.job::before{content:"";position:absolute;left:-27px;top:30px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:3px solid var(--accent)}
+.job-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.job h3{font-size:1.15rem;font-weight:700}
+.job .company{color:var(--accent2);font-weight:600}
+.job .dates{font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--faint);white-space:nowrap;background:rgba(255,255,255,.03);border:1px solid var(--line);padding:4px 12px;border-radius:999px}
+.job ul{list-style:none;margin-top:12px}
+.job li{color:var(--muted);font-size:.95rem;padding-left:22px;position:relative;margin-bottom:9px}
+.job li::before{content:"▸";position:absolute;left:0;color:var(--accent)}
+.job li strong{color:var(--text)}
+.loc{color:var(--faint);font-size:.85rem}
+
+/* ---------- projects ---------- */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.proj{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px;display:flex;flex-direction:column;transition:transform .15s,border-color .15s}
+.proj:hover{transform:translateY(-3px);border-color:var(--accent)}
+.proj .status{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--warn);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+.proj .status.live{color:var(--accent)}
+.proj h3{font-size:1.2rem;margin-bottom:6px}
+.proj .stack{font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--faint);margin-bottom:12px}
+.proj p{color:var(--muted);font-size:.93rem;margin-bottom:10px}
+.proj ul{list-style:none;margin-bottom:14px}
+.proj li{color:var(--muted);font-size:.9rem;padding-left:20px;position:relative;margin-bottom:7px}
+.proj li::before{content:"–";position:absolute;left:4px;color:var(--accent)}
+.proj .links{margin-top:auto;padding-top:8px}
+.proj .links a{color:var(--accent);text-decoration:none;font-weight:600;font-size:.9rem;border-bottom:1px solid transparent}
+.proj .links a:hover{border-color:var(--accent)}
+
+/* ---------- education ---------- */
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.edu{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.edu h3{font-size:1.05rem;margin-bottom:4px}
+.edu .school{color:var(--accent2);font-weight:600;font-size:.95rem}
+.edu .dates{font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--faint);margin-top:8px}
+
+/* ---------- contact ---------- */
+.contact-box{background:linear-gradient(135deg,rgba(94,234,212,.07),rgba(56,189,248,.07));border:1px solid var(--line);border-radius:var(--radius);padding:44px 34px;text-align:center}
+.contact-box h2{margin-bottom:10px}
+.contact-box p{color:var(--muted);max-width:520px;margin:0 auto 26px}
+.contact-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+footer{text-align:center;color:var(--faint);font-size:.82rem;padding:36px 0 44px;font-family:'JetBrains Mono',monospace}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease}
+.reveal.in{opacity:1;transform:none}
+@media print{
+  nav,.cta-row,.burger{display:none}
+  body{background:#fff;color:#111}
+  .job,.skill-card,.proj,.edu,.stat-card,.contact-box{background:#fff;border:1px solid #ccc}
+  section{padding:30px 0}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="brand">&lt;yugal<span>.teotia</span>/&gt;</div>
+    <button class="burger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">☰</button>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="home">
+  <div class="wrap hero-inner">
+    <p class="kicker">Hello, I'm</p>
+    <h1>Yugal Teotia<br><span class="thin">Backend Software Engineer</span></h1>
+    <p class="tag">I build <strong>enterprise SaaS features and cross-product APIs</strong> with Java, Spring Boot, gRPC and MongoDB — microservice upgrades, database optimization, and reliable, maintainable systems.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#projects">View my work</a>
+      <a class="btn btn-ghost" href="Yugal_Teotia_Resume.pdf" download>Download resume</a>
+      <a class="btn btn-ghost" href="#contact">Get in touch</a>
+    </div>
+    <div class="hero-meta">
+      <span>📍 Pune, India</span>
+      <a href="mailto:teotia.yugal@gmail.com">teotia.yugal@gmail.com</a>
+      <a href="https://www.linkedin.com/in/yugalteotia/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/yugalteotia" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section id="about">
+  <p class="sec-label reveal">About</p>
+  <h2 class="reveal">Engineer first, across the stack</h2>
+  <p class="sec-sub reveal">A short version of the story behind the resume.</p>
+  <div class="about-grid">
+    <div class="reveal">
+      <p>I'm a <strong>backend-focused software engineer</strong> with experience building enterprise applications using Java, Spring Boot, REST APIs, gRPC and MongoDB — alongside frontend technologies including JavaScript, TypeScript and Ember.js to build features that integrate with backend services.</p>
+      <p>At <strong>IDeaS (a SAS company)</strong>, I contributed to cross-product APIs, distributed service integration, database optimization, a large Spring Boot migration, production debugging, and engineering automation — including connecting frontend experiences with backend functionality.</p>
+      <p>I use <strong>AI-assisted development tools</strong> like GitHub Copilot to accelerate implementation, root-cause analysis, debugging and scenario generation — while owning the technical approach, reviewing generated code, and validating solutions before calling the work done.</p>
+      <p>I enjoy breaking down complex problems and building <strong>maintainable, extensible, reliable software</strong> across the application stack.</p>
+    </div>
+    <div class="stat-card reveal">
+      <div class="stat-row"><span class="stat-num">20</span><span class="stat-lab">Java modules migrated Spring Boot 2.6 → 3.5</span></div>
+      <div class="stat-row"><span class="stat-num">~60%</span><span class="stat-lab">manual operational effort reduced via API orchestration</span></div>
+      <div class="stat-row"><span class="stat-num">~30%</span><span class="stat-lab">faster API-backed data retrieval in ERP modules</span></div>
+      <div class="stat-row"><span class="stat-num">2+</span><span class="stat-lab">years building enterprise SaaS at scale</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <p class="sec-label reveal">Skills</p>
+  <h2 class="reveal">What I work with</h2>
+  <p class="sec-sub reveal">The tools I reach for day to day.</p>
+  <div class="skill-grid">
+    <div class="skill-card reveal"><h3><span class="dot"></span>Languages</h3><div class="pills"><span class="pill hot">Java</span><span class="pill hot">JavaScript</span><span class="pill hot">TypeScript</span><span class="pill">Kotlin</span></div></div>
+    <div class="skill-card reveal"><h3><span class="dot"></span>Backend</h3><div class="pills"><span class="pill hot">Spring Boot</span><span class="pill hot">REST APIs</span><span class="pill hot">gRPC</span><span class="pill">Protocol Buffers</span><span class="pill">Microservices</span><span class="pill">Spring Security</span></div></div>
+    <div class="skill-card reveal"><h3><span class="dot"></span>Data</h3><div class="pills"><span class="pill hot">MongoDB</span><span class="pill hot">MySQL</span><span class="pill">Spring Data JPA</span><span class="pill">Hibernate</span><span class="pill">Flyway</span><span class="pill">Mongock / Mongobee</span></div></div>
+    <div class="skill-card reveal"><h3><span class="dot"></span>Frontend &amp; Mobile</h3><div class="pills"><span class="pill">Ember.js</span><span class="pill">React.js</span><span class="pill">Jetpack Compose</span><span class="pill">HTML / CSS</span></div></div>
+    <div class="skill-card reveal"><h3><span class="dot"></span>Engineering tools</h3><div class="pills"><span class="pill">Git</span><span class="pill">Gradle</span><span class="pill">Maven</span><span class="pill">GitHub Actions</span><span class="pill">Docker</span><span class="pill">Linux</span><span class="pill">JUnit</span><span class="pill">Mockito</span></div></div>
+    <div class="skill-card reveal"><h3><span class="dot"></span>AI-assisted development</h3><div class="pills"><span class="pill hot">GitHub Copilot</span><span class="pill">Prompt engineering</span><span class="pill">Agent workflows</span><span class="pill">RCA &amp; debugging</span><span class="pill">Scenario generation</span></div></div>
+  </div>
+</section>
+
+<section id="experience">
+  <p class="sec-label reveal">Experience</p>
+  <h2 class="reveal">Where I've worked</h2>
+  <p class="sec-sub reveal">Enterprise SaaS and ERP products, backend-first.</p>
+  <div class="timeline">
+    <article class="job reveal">
+      <div class="job-head">
+        <div><h3>Software Engineer</h3><div class="company">IDeaS — A SAS Company</div><div class="loc">Pune, India</div></div>
+        <span class="dates">Oct 2024 – Sep 2026</span>
+      </div>
+      <ul>
+        <li>Enabled <strong>cross-product data exchange</strong> through REST and gRPC APIs with pagination, filtering and audit info; kept Protocol Buffer contracts backward-compatible and validated via contract-style tests.</li>
+        <li>Built <strong>concurrency controls for long-running jobs</strong> — centralized mutation guards plus status APIs to prevent conflicting changes, with frontend progress tracking and conflict handling.</li>
+        <li><strong>Optimized MongoDB access</strong> with targeted indexes, bulk reads and batched audit retrieval; wrote migration logic to transform and upsert legacy records.</li>
+        <li>Upgraded a microservice app across <strong>20 Java modules from Spring Boot 2.6 to 3.5</strong> — redesigned security config for Spring Security 6, migrated Jakarta APIs, upgraded five generated API-client modules.</li>
+        <li>Delivered Ember.js/TypeScript configuration and reporting features with reusable multiselect components, validation and conditional rendering; simplified shared logic and removed redundant service calls.</li>
+        <li>Cut <strong>~60% of manual operational effort</strong> through API orchestration guided by live DB load; built a browser extension making dev/staging/prod environments visually distinct.</li>
+      </ul>
+    </article>
+    <article class="job reveal">
+      <div class="job-head">
+        <div><h3>Application Developer</h3><div class="company">Data Nova India Pvt. Ltd.</div><div class="loc">Noida, India</div></div>
+        <span class="dates">Feb 2023 – May 2023</span>
+      </div>
+      <ul>
+        <li>Built ERP mobile application modules using <strong>MVVM</strong>, isolating presentation from application logic.</li>
+        <li>Improved API-backed data retrieval by <strong>~30%</strong> by refining retrieval logic and removing unnecessary processing.</li>
+        <li>Reduced reported application issues by <strong>~20%</strong> through targeted defect resolution.</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<section id="projects">
+  <p class="sec-label reveal">Projects</p>
+  <h2 class="reveal">Things I've built</h2>
+  <p class="sec-sub reveal">Side projects where I owned the design end to end.</p>
+  <div class="proj-grid">
+    <article class="proj reveal">
+      <p class="status live">● Functional prototype</p>
+      <h3>UNITY — Peer-to-Peer Music Sync</h3>
+      <p class="stack">Kotlin · Jetpack Compose · Media3 ExoPlayer · Coroutines · TCP/UDP</p>
+      <p>Local-network Android app for synchronized music sessions with leader/follower control, device discovery, pairing-code joining and shared queues.</p>
+      <ul>
+        <li>Designed the architecture and sync protocol from scratch.</li>
+        <li>TCP command channel + UDP playback synchronization, local media discovery, MediaSession controls.</li>
+        <li>Iterative AI-assisted development, with generated code reviewed against the intended design.</li>
+      </ul>
+      <div class="links"><a href="https://github.com/yugalteotia/unity-music-sync" target="_blank" rel="noopener">View on GitHub →</a></div>
+    </article>
+    <article class="proj reveal">
+      <p class="status">● In progress</p>
+      <h3>Store REST API</h3>
+      <p class="stack">Spring Boot · Spring Data JPA · MySQL · Flyway · OpenAPI</p>
+      <p>Cart-management REST API built with layered architecture — DTO mapping, request validation, consistent error responses, versioned schema migrations and OpenAPI docs.</p>
+      <ul>
+        <li>Layered architecture with clean DTO mapping.</li>
+        <li>Global exception handling for consistent error responses.</li>
+        <li>Flyway migrations + OpenAPI documentation.</li>
+      </ul>
+      <div class="links"><a href="https://github.com/yugalteotia/spring_api_starter" target="_blank" rel="noopener">View on GitHub →</a></div>
+    </article>
+  </div>
+</section>
+
+<section id="education">
+  <p class="sec-label reveal">Education</p>
+  <h2 class="reveal">Background</h2>
+  <p class="sec-sub reveal">Formal training behind the engineering.</p>
+  <div class="edu-grid">
+    <div class="edu reveal">
+      <h3>PG Diploma in Advanced Computing (PG-DAC)</h3>
+      <div class="school">Centre for Development of Advanced Computing (C-DAC), Pune</div>
+      <div class="dates">Mar 2024 – Aug 2024</div>
+    </div>
+    <div class="edu reveal">
+      <h3>B.Tech, Computer Science &amp; Engineering</h3>
+      <div class="school">Dr. A.P.J. Abdul Kalam Technical University</div>
+      <div class="dates">2020 – 2023</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-box reveal">
+    <p class="sec-label">Contact</p>
+    <h2>Let's build something</h2>
+    <p>I'm open to backend software engineering roles — Java, Spring Boot, microservices, APIs. My inbox is always open.</p>
+    <div class="contact-links">
+      <a class="btn btn-primary" href="mailto:teotia.yugal@gmail.com">Email me</a>
+      <a class="btn btn-ghost" href="tel:+919560369538">+91 95603 69538</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/yugalteotia/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-ghost" href="https://github.com/yugalteotia" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Yugal Teotia · Built with care, hosted on GitHub Pages</div>
+</footer>
+
+<script>
+// mobile menu + scroll reveal + active nav link
+const links=[...document.querySelectorAll('.nav-links a')];
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const secs=[...document.querySelectorAll('section[id]')];
+addEventListener('scroll',()=>{
+  const y=scrollY+120;let cur='';
+  secs.forEach(s=>{if(s.offsetTop<=y)cur=s.id});
+  links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
+},{passive:true});
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>document.querySelector('.nav-links').classList.remove('open')));
+</script>
+</body>
+</html>
