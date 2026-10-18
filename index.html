@@ -175,6 +175,9 @@ section{scroll-margin-top:64px}
 .profile b{font-size:.95rem;display:block}
 .profile small{color:var(--faint);font-size:.76rem;font-family:'JetBrains Mono',monospace}
 .contact-cta{display:flex;gap:14px;flex-wrap:wrap}
+.contact-frame{position:relative;border-radius:18px;padding:46px 40px;background:rgba(14,21,43,.72);backdrop-filter:blur(8px)}
+.contact-frame::before{content:"";position:absolute;inset:0;border-radius:18px;padding:2px;background:linear-gradient(135deg,#5eead4,#38bdf8,#a78bfa,#f472b6,#5eead4);background-size:300% 300%;animation:gradShift 8s ease infinite;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+@media(max-width:760px){.contact-frame{padding:32px 22px}}
 .edu a.school{color:var(--accent2);font-weight:600;font-size:.95rem;text-decoration:none;border-bottom:1px dotted rgba(56,189,248,.5)}
 .edu a.school:hover{border-bottom-style:solid}
 .pill.hot{background:rgba(167,139,250,.12);border-color:rgba(167,139,250,.4);color:#c4b5fd}
@@ -266,7 +269,7 @@ section{scroll-margin-top:64px}
 <section id="skills">
   <p class="sec-label reveal">Skills</p>
   <h2 class="reveal">What I work with</h2>
-  <p class="sec-sub reveal">What I build with — and what I'm learning next. Highlighted ones are the most in-demand right now.</p>
+  <p class="sec-sub reveal">What I build with — and what I'm learning next.</p>
   <div class="skill-grid">
     <div class="skill-card reveal"><h3><span class="dot"></span>Languages</h3><div class="pills"><span class="pill hot">Java</span><span class="pill hot">TypeScript</span><span class="pill">JavaScript</span><span class="pill">Kotlin</span></div></div>
     <div class="skill-card reveal"><h3><span class="dot"></span>Backend</h3><div class="pills"><span class="pill hot">Spring Boot</span><span class="pill hot">Microservices</span><span class="pill hot">REST APIs</span><span class="pill hot">gRPC</span><span class="pill">Spring Security</span><span class="pill">Protocol Buffers</span></div></div>
@@ -387,6 +390,7 @@ section{scroll-margin-top:64px}
 </section>
 
 <section id="contact">
+  <div class="contact-frame">
   <p class="sec-label reveal">Contact</p>
   <h2 class="reveal">Let's build something <span class="grad">together</span></h2>
   <p class="sec-sub reveal">Open to full-stack and backend engineering roles. Find me on any of these — or just say hi.</p>
@@ -396,11 +400,11 @@ section{scroll-margin-top:64px}
     <a class="profile" href="https://x.com/yugalTeotia_" target="_blank" rel="noopener"><span class="p-ico pi-3">X</span><span><b>X</b><small>x.com/yugalTeotia_</small></span></a>
     <a class="profile" href="https://codepen.io/yugalteotia/pens/" target="_blank" rel="noopener"><span class="p-ico pi-4">&lt;/&gt;</span><span><b>CodePen</b><small>codepen.io/yugalteotia</small></span></a>
     <a class="profile" href="https://hub.docker.com/u/4yugal" target="_blank" rel="noopener"><span class="p-ico pi-5">◈</span><span><b>Docker Hub</b><small>hub.docker.com/u/4yugal</small></span></a>
-    <a class="profile" href="https://referral.hackthebox.com/mz8U37S" target="_blank" rel="noopener"><span class="p-ico pi-6">▣</span><span><b>HackTheBox</b><small>hackthebox.com</small></span></a>
   </div>
   <div class="contact-cta reveal">
     <a class="btn btn-primary" href="mailto:teotia.yugal@gmail.com">teotia.yugal@gmail.com</a>
     <a class="btn btn-ghost" href="tel:+919560369538">+91 95603 69538</a>
+  </div>
   </div>
 </section>
 
